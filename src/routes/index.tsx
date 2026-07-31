@@ -75,6 +75,12 @@ function InvitationPage() {
       <LoadingScreen />
       <Petals />
       <Hero opened={opened} onOpen={() => setOpened(true)} />
+      {opened ? (
+        <>
+          <FloatingMenu />
+          <MusicPlayer active={opened} />
+        </>
+      ) : null}
 
       <AnimatePresence>
         {opened && (
@@ -83,8 +89,6 @@ function InvitationPage() {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <FloatingMenu />
-            <MusicPlayer active={opened} />
             <LoveStory />
             <Countdown />
             <Timeline />
