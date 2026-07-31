@@ -108,9 +108,9 @@ export function Monogram({
       )}
       aria-label={`${left} and ${right}`}
     >
-      <span className="-mr-3 md:-mr-5">{left}</span>
-      <span className="mx-0.5 text-[0.45em] opacity-70">&amp;</span>
-      <span className="-ml-3 md:-ml-5">{right}</span>
+      <span className="-mr-[0.12em]">{left}</span>
+      <span className="mx-[0.02em] text-[0.42em] italic opacity-60">&amp;</span>
+      <span className="-ml-[0.12em]">{right}</span>
     </span>
   );
 }

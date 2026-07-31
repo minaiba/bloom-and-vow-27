@@ -1,11 +1,11 @@
-import { Camera, GlassWater, Music, UtensilsCrossed } from "lucide-react";
+import { Camera, GlassWater, Heart, Music, UtensilsCrossed } from "lucide-react";
 import { motion } from "motion/react";
 
 import { weddingConfig, type TimelineItem } from "@/config/wedding";
 import { Reveal, SectionTitle } from "./primitives";
 
 const icons = {
-  rings: Camera,
+  rings: Heart,
   glass: GlassWater,
   dinner: UtensilsCrossed,
   camera: Camera,
