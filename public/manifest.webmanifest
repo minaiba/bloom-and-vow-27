@@ -1,0 +1,16 @@
+{
+  "name": "Olivia & Ralph — Wedding Invitation",
+  "short_name": "O & R",
+  "description": "Wedding invitation of Olivia and Ralph, May 18, 2025.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfcfe",
+  "theme_color": "#1B3A73",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
