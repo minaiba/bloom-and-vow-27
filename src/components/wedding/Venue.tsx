@@ -3,7 +3,14 @@ import { MapPin, Navigation } from "lucide-react";
 import { weddingConfig } from "@/config/wedding";
 import { Reveal, ScaleIn, SectionTitle } from "./primitives";
 
-type Venue = (typeof weddingConfig.venues)["ceremony"];
+type Venue = {
+  name: string;
+  address: string;
+  time: string;
+  image: string;
+  mapsUrl: string;
+  embedUrl: string;
+};
 
 function VenueCard({
   venue,
