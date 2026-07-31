@@ -19,16 +19,13 @@ export function Reveal({
   children,
   className,
   delay = 0,
-  as = "div",
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
-  as?: "div" | "section" | "li" | "span";
 }) {
-  const Comp = motion[as];
   return (
-    <Comp
+    <motion.div
       className={className}
       initial="hidden"
       whileInView="visible"
@@ -37,7 +34,7 @@ export function Reveal({
       transition={{ delay }}
     >
       {children}
-    </Comp>
+    </motion.div>
   );
 }
 
