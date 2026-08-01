@@ -1,90 +1,101 @@
-import { Check, Copy, ExternalLink } from "lucide-react";
-import { QRCodeSVG } from "qrcode.react";
+import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
-import { toast } from "sonner";
 
 import { weddingConfig } from "@/config/wedding";
 import { Reveal, SectionTitle } from "./primitives";
 
-export function Gifts() {
-  const { gifts, seo } = weddingConfig;
-  const [copied, setCopied] = useState(false);
+const easeSilk = [0.22, 1, 0.36, 1] as const;
 
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(gifts.cardNumber.replace(/\s/g, ""));
-      setCopied(true);
-      toast.success("Card number copied");
-      window.setTimeout(() => setCopied(false), 2500);
-    } catch {
-      toast.error("Could not copy — please copy manually");
-    }
-  };
+function TelegramIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M21.94 4.3 18.9 19.1c-.23 1.02-.84 1.27-1.7.79l-4.7-3.47-2.27 2.19c-.25.25-.46.46-.94.46l.34-4.79 8.72-7.88c.38-.34-.08-.53-.59-.19l-10.78 6.8-4.64-1.45c-1.01-.32-1.03-1.01.21-1.5l18.14-6.99c.84-.31 1.58.19 1.25 1.23Z" />
+    </svg>
+  );
+}
+
+export function Gifts() {
+  const { gifts, ui } = weddingConfig;
+  const [open, setOpen] = useState(false);
 
   return (
     <section id="gifts" className="relative px-6 py-24 sm:py-32">
-      <SectionTitle overline="Gift guide" title="Gifts" />
+      <SectionTitle overline={ui.gifts.overline} title={ui.gifts.title} />
 
-      <Reveal className="mx-auto mt-12 max-w-2xl text-center">
-        <p className="text-sm leading-loose text-foreground/75 sm:text-base">
-          Your presence is the greatest gift. {gifts.text}
-        </p>
-      </Reveal>
-
-      <div className="mx-auto mt-14 grid max-w-3xl gap-6 sm:grid-cols-2">
-        <Reveal>
-          <div className="glass flex h-full flex-col items-center justify-center gap-5 rounded-3xl p-8">
-            <div className="rounded-2xl bg-card p-4">
-              <QRCodeSVG value={gifts.payUrl} size={132} level="M" fgColor="#1B3A73" />
-            </div>
-            <p className="text-[0.6rem] uppercase tracking-[0.3em] text-muted-foreground">
-              Scan to send a gift
-            </p>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.12}>
-          <div className="glass flex h-full flex-col justify-between gap-6 rounded-3xl p-8">
-            <div>
-              <p className="text-[0.6rem] uppercase tracking-[0.3em] text-muted-foreground">
-                Card holder
+      <div className="mx-auto mt-14 flex max-w-xl flex-col items-center">
+        <AnimatePresence mode="wait">
+          {!open ? (
+            <motion.button
+              key="envelope"
+              type="button"
+              onClick={() => setOpen(true)}
+              aria-label={gifts.envelopeHint}
+              initial={{ opacity: 0, scale: 0.94, filter: "blur(8px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, scale: 1.06, filter: "blur(10px)" }}
+              transition={{ duration: 0.8, ease: easeSilk }}
+              whileHover={{ y: -6 }}
+              className="group relative block w-full max-w-sm"
+            >
+              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-lift)] ring-1 ring-border">
+                {/* тело конверта */}
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary via-card to-secondary" />
+                <div className="absolute inset-x-0 bottom-0 top-1/2 bg-card/80" />
+                {/* боковые складки */}
+                <div className="absolute inset-0">
+                  <div className="absolute left-0 top-0 h-full w-1/2 origin-left skew-y-[18deg] bg-primary/5" />
+                  <div className="absolute right-0 top-0 h-full w-1/2 origin-right -skew-y-[18deg] bg-primary/5" />
+                </div>
+                {/* крышка */}
+                <div className="absolute inset-x-0 top-0 h-1/2 origin-top overflow-hidden transition-transform duration-700 group-hover:[transform:rotateX(12deg)]">
+                  <div className="h-full w-full [clip-path:polygon(0_0,100%_0,50%_100%)] bg-gradient-to-b from-sky/40 to-primary/25" />
+                </div>
+                {/* печать-монограмма */}
+                <div className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-soft)]">
+                  <span className="script text-2xl">
+                    {weddingConfig.couple.monogram.left}&amp;
+                    {weddingConfig.couple.monogram.right}
+                  </span>
+                </div>
+              </div>
+              <p className="mt-6 text-center text-[0.6rem] uppercase tracking-[0.3em] text-muted-foreground">
+                {gifts.envelopeHint}
               </p>
-              <p className="script mt-2 text-2xl text-primary">{gifts.cardHolder}</p>
-              <p className="mt-4 font-mono text-lg tracking-[0.15em] text-foreground/80">
-                {gifts.cardNumber}
-              </p>
-            </div>
-            <div className="flex flex-col gap-3">
-              <button
-                type="button"
-                onClick={copy}
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-primary/30 px-6 py-3 text-[0.65rem] uppercase tracking-[0.28em] text-primary transition-colors hover:bg-secondary"
-              >
-                {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                {copied ? "Copied" : "Copy Card Number"}
-              </button>
+            </motion.button>
+          ) : (
+            <motion.div
+              key="card"
+              initial={{ opacity: 0, y: 40, scale: 0.94, filter: "blur(12px)" }}
+              animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              transition={{ duration: 1, ease: easeSilk }}
+              className="glass w-full max-w-md rounded-3xl p-8 text-center sm:p-10"
+            >
+              <p className="script text-3xl text-primary">{gifts.title}</p>
+              <div className="mt-6 space-y-4">
+                {gifts.text.split("\n\n").map((p) => (
+                  <p key={p} className="text-sm leading-loose text-foreground/75">
+                    {p}
+                  </p>
+                ))}
+              </div>
               <a
-                href={gifts.payUrl}
+                href={gifts.telegramUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-[0.65rem] uppercase tracking-[0.28em] text-primary-foreground transition-transform duration-500 hover:scale-[1.02]"
+                className="mx-auto mt-8 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-soft)] transition-transform duration-500 hover:scale-110"
+                aria-label={gifts.telegramLabel}
               >
-                {gifts.payLabel}
-                <ExternalLink className="h-3.5 w-3.5" />
+                <TelegramIcon className="h-7 w-7" />
               </a>
-            </div>
-          </div>
-        </Reveal>
+              <p className="mt-4 text-[0.65rem] uppercase tracking-[0.3em] text-muted-foreground">
+                {gifts.telegramLabel}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      <Reveal delay={0.2} className="mx-auto mt-16 flex max-w-sm flex-col items-center gap-4 text-center">
-        <div className="rounded-2xl bg-card p-4 shadow-[var(--shadow-soft)]">
-          <QRCodeSVG value={seo.siteUrl} size={104} level="M" fgColor="#1B3A73" />
-        </div>
-        <p className="text-[0.6rem] uppercase tracking-[0.3em] text-muted-foreground">
-          Share our invitation
-        </p>
-      </Reveal>
+      <Reveal delay={0.2} className="mt-16" />
     </section>
   );
 }
