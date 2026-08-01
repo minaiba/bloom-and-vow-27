@@ -51,7 +51,7 @@ function VenueCard({
               className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-[0.6rem] uppercase tracking-[0.25em] text-primary-foreground transition-transform duration-500 hover:scale-[1.03]"
             >
               <Navigation className="h-3.5 w-3.5" />
-              Navigate
+              {weddingConfig.ui.venue.navigate}
             </a>
             <a
               href={venue.mapsUrl}
@@ -59,7 +59,7 @@ function VenueCard({
               rel="noreferrer noopener"
               className="inline-flex items-center gap-2 rounded-full border border-primary/30 px-5 py-2.5 text-[0.6rem] uppercase tracking-[0.25em] text-primary transition-colors hover:bg-secondary"
             >
-              Open Maps
+              {weddingConfig.ui.venue.openMaps}
             </a>
           </div>
         </div>
@@ -70,25 +70,26 @@ function VenueCard({
 
 export function Venue() {
   const { ceremony, reception } = weddingConfig.venues;
+  const t = weddingConfig.ui.venue;
 
   return (
     <section id="venue" className="relative overflow-hidden px-6 py-24 sm:py-32">
       <div className="watercolor torn-top torn-bottom absolute inset-0 -z-10 opacity-60" />
 
       <SectionTitle
-        overline="Where to find us"
-        title="The Venues"
-        subtitle="Come for the love and stay for the party — we cannot wait to celebrate with you."
+        overline={t.overline}
+        title={t.title}
+        subtitle={t.subtitle}
       />
 
       <div className="mx-auto mt-16 grid max-w-5xl gap-8 md:grid-cols-2">
-        <VenueCard venue={ceremony} label="Ceremony" index={0} />
-        <VenueCard venue={reception} label="Reception" index={1} />
+        <VenueCard venue={ceremony} label={t.ceremony} index={0} />
+        <VenueCard venue={reception} label={t.reception} index={1} />
       </div>
 
       <ScaleIn className="mx-auto mt-12 max-w-5xl overflow-hidden rounded-3xl shadow-[var(--shadow-lift)]">
         <iframe
-          title="Wedding venue map"
+          title={t.mapTitle}
           src={ceremony.embedUrl}
           className="h-[380px] w-full border-0"
           loading="lazy"

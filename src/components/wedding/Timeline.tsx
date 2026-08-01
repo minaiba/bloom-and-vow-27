@@ -38,9 +38,9 @@ export function Timeline() {
   return (
     <section id="timeline" className="relative px-6 py-24 sm:py-32">
       <SectionTitle
-        overline="The order of the day"
-        title="Wedding Timeline"
-        subtitle="A gentle flow from vows to the very last dance."
+        overline={weddingConfig.ui.timeline.overline}
+        title={weddingConfig.ui.timeline.title}
+        subtitle={weddingConfig.ui.timeline.subtitle}
       />
 
       <div className="relative mx-auto mt-16 max-w-xl">

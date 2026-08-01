@@ -30,14 +30,14 @@ function DressIcon({ variant }: { variant: "gown" | "suit" }) {
 }
 
 export function DressCode() {
-  const { dressCode } = weddingConfig;
+  const { dressCode, ui } = weddingConfig;
 
   return (
     <section className="relative overflow-hidden px-6 py-24 sm:py-32">
       <div className="watercolor torn-top torn-bottom absolute inset-0 -z-10 opacity-70" />
 
       <SectionTitle
-        overline="Dress code"
+        overline={ui.dressCode.overline}
         title={dressCode.title}
         subtitle={dressCode.note}
       />
@@ -47,7 +47,7 @@ export function DressCode() {
           <div className="flex flex-col items-center gap-3">
             <DressIcon variant="gown" />
             <span className="text-[0.6rem] uppercase tracking-[0.35em] text-muted-foreground">
-              Ladies
+              {ui.dressCode.ladies}
             </span>
           </div>
         </Reveal>
@@ -55,7 +55,7 @@ export function DressCode() {
           <div className="flex flex-col items-center gap-3">
             <DressIcon variant="suit" />
             <span className="text-[0.6rem] uppercase tracking-[0.35em] text-muted-foreground">
-              Gentlemen
+              {ui.dressCode.gentlemen}
             </span>
           </div>
         </Reveal>
@@ -63,7 +63,7 @@ export function DressCode() {
 
       <Reveal delay={0.2} className="mx-auto mt-16 max-w-xl text-center">
         <p className="text-[0.65rem] uppercase tracking-[0.4em] text-muted-foreground">
-          Colour guide
+          {ui.dressCode.colours}
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
           {dressCode.palette.map((c) => (
@@ -83,7 +83,7 @@ export function DressCode() {
 
       <Reveal delay={0.3} className="mx-auto mt-14 max-w-xl text-center">
         <p className="text-[0.65rem] uppercase tracking-[0.4em] text-muted-foreground">
-          Kindly avoid
+          {ui.dressCode.avoid}
         </p>
         <div className="mt-4 flex flex-wrap justify-center gap-3">
           {dressCode.avoid.map((item) => (
