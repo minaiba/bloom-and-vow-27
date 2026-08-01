@@ -94,8 +94,6 @@ export function Gifts() {
           )}
         </AnimatePresence>
       </div>
-
-      <Reveal delay={0.2} className="mt-16" />
     </section>
   );
 }
