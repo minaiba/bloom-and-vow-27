@@ -1,7 +1,7 @@
 /**
- * Single source of truth for the whole invitation.
- * Change anything here — no component edits required.
- * Images live in /public/images and are referenced by path.
+ * Единый источник всех текстов и данных приглашения.
+ * Меняйте только этот файл — компоненты трогать не нужно.
+ * Изображения лежат в /public/images.
  */
 
 export type TimelineItem = {
@@ -15,28 +15,28 @@ export type GalleryItem = { src: string; alt: string };
 
 export const weddingConfig = {
   seo: {
-    title: "Olivia & Ralph — Wedding Invitation · May 18, 2025",
+    title: "Оливия и Ральф — Приглашение на свадьбу · 18 мая 2025",
     description:
-      "You are warmly invited to the wedding of Olivia and Ralph on May 18, 2025 at Our Lady of Lourdes Parish. Ceremony, reception, gallery and RSVP.",
+      "Приглашаем вас на свадьбу Оливии и Ральфа 18 мая 2025 года. Программа дня, локации, галерея и дресс-код.",
     siteUrl: "https://olivia-and-ralph.lovable.app",
     ogImage: "https://olivia-and-ralph.lovable.app/images/hero.jpg",
   },
 
   couple: {
-    bride: "Olivia",
-    groom: "Ralph",
-    monogram: { left: "O", right: "R" },
-    hashtag: "#RalphandOliviaForever",
+    bride: "Оливия",
+    groom: "Ральф",
+    monogram: { left: "О", right: "Р" },
+    hashtag: "#ОливияИРальфНавсегда",
     verse:
-      "“Isaiah 60:22 — When the time is right, I, the Lord, will make it happen.”",
+      "«Исаия 60:22 — Когда придёт время, Я, Господь, сделаю это».",
   },
 
   date: {
-    /** ISO date used for the countdown */
+    /** ISO-дата для таймера */
     iso: "2025-05-18T14:00:00+08:00",
-    display: "May 18, 2025",
+    display: "18 мая 2025",
     day: "18",
-    month: "MAY",
+    month: "МАЯ",
     year: "2025",
   },
 
@@ -48,73 +48,73 @@ export const weddingConfig = {
   },
 
   music: {
-    /** Drop your own file at /public/music/theme.mp3 */
+    /** Положите свой файл в /public/music/theme.mp3 */
     src: "/music/theme.mp3",
-    title: "Our Song",
+    title: "Наша песня",
   },
 
   story: {
-    title: "Our Love Story",
+    title: "Наша история",
     paragraphs: [
-      "In a coastal town, Olivia, a marine biologist, met Ralph, a fisherman, on the morning her boat broke down. Their shared love for the ocean quickly sparked a deeper connection.",
-      "Exploring coves and studying marine life together, they fell in love. One sunset, Ralph confessed his feelings, and Olivia joyfully reciprocated.",
-      "Their love story, rooted in a passion for the sea, became a cherished legend in their town — and today it begins a new chapter.",
+      "В маленьком приморском городке Оливия, морской биолог, встретила Ральфа, рыбака, — в то утро, когда её лодка сломалась. Общая любовь к морю сразу связала их.",
+      "Они исследовали бухты, изучали морскую жизнь и однажды на закате Ральф признался в своих чувствах. Оливия ответила ему тем же.",
+      "Их история, рождённая из любви к морю, стала местной легендой — а сегодня начинается её новая глава.",
     ],
   },
 
   timeline: [
-    { time: "2:00 PM", title: "Ceremony", description: "Our Lady of Lourdes Parish", icon: "rings" },
-    { time: "4:00 PM", title: "Reception", description: "Cocktails at The Farm", icon: "glass" },
-    { time: "5:00 PM", title: "Dinner", description: "Seated dinner & toasts", icon: "dinner" },
-    { time: "6:00 PM", title: "Photos", description: "Golden hour portraits", icon: "camera" },
-    { time: "7:00 PM", title: "Dance", description: "First dance & party", icon: "music" },
+    { time: "14:00", title: "Церемония", description: "Приход Богоматери Лурдской", icon: "rings" },
+    { time: "16:00", title: "Банкет", description: "Welcome-коктейль на «Ферме»", icon: "glass" },
+    { time: "17:00", title: "Ужин", description: "Ужин и тёплые тосты", icon: "dinner" },
+    { time: "18:00", title: "Фотосессия", description: "Портреты в золотой час", icon: "camera" },
+    { time: "19:00", title: "Танцы", description: "Первый танец и вечеринка", icon: "music" },
   ] satisfies TimelineItem[],
 
   gallery: [
-    { src: "/images/gallery-1.jpg", alt: "Olivia and Ralph laughing together" },
-    { src: "/images/gallery-2.jpg", alt: "Blue and white wedding bouquet" },
-    { src: "/images/gallery-3.jpg", alt: "Ralph in a navy suit" },
-    { src: "/images/gallery-4.jpg", alt: "Olivia's veil in the wind" },
-    { src: "/images/story.jpg", alt: "Holding hands with the ring" },
-    { src: "/images/reception.jpg", alt: "Reception tables at dusk" },
+    { src: "/images/gallery-1.jpg", alt: "Оливия и Ральф смеются вместе" },
+    { src: "/images/gallery-2.jpg", alt: "Свадебный букет в бело-синих тонах" },
+    { src: "/images/gallery-3.jpg", alt: "Ральф в тёмно-синем костюме" },
+    { src: "/images/gallery-4.jpg", alt: "Фата Оливии на ветру" },
+    { src: "/images/story.jpg", alt: "Руки с обручальным кольцом" },
+    { src: "/images/reception.jpg", alt: "Столы банкета на закате" },
   ] satisfies GalleryItem[],
 
   dressCode: {
-    title: "Formal Attire",
-    note: "We would love to see you dressed in our palette.",
+    title: "Торжественный стиль",
+    note: "Будем рады видеть вас в оттенках нашей палитры.",
     palette: [
-      { name: "Deep Blue", hex: "#1B3A73" },
-      { name: "Cornflower", hex: "#4C7BD9" },
-      { name: "Sky", hex: "#A9C6EE" },
-      { name: "Beige", hex: "#E8DFCF" },
-      { name: "Light Gray", hex: "#DCDEE2" },
-      { name: "White", hex: "#FFFFFF" },
+      { name: "Тёмно-синий", hex: "#1B3A73" },
+      { name: "Василёк", hex: "#4C7BD9" },
+      { name: "Небесный", hex: "#A9C6EE" },
+      { name: "Бежевый", hex: "#E8DFCF" },
+      { name: "Светло-серый", hex: "#DCDEE2" },
+      { name: "Белый", hex: "#FFFFFF" },
     ],
-    avoid: ["Red", "Neon", "Black"],
+    avoid: ["Красный", "Неон", "Чёрный"],
   },
 
   gifts: {
-    text: "With all that we have, we've been truly blessed. Your presence and prayers are all that we request. But if you desire to give nonetheless — a monetary gift is one we request.",
-    cardNumber: "4400 4302 1234 5678",
-    cardHolder: "Olivia Harrington",
-    payLabel: "Open Kaspi",
-    payUrl: "https://kaspi.kz",
+    envelopeHint: "Нажмите на конверт",
+    title: "Дорогие гости!",
+    text: "Мы создали группу в Telegram, куда можно добавлять фотографии со свадьбы.\n\nДавайте поделимся друг с другом счастливыми моментами этого прекрасного дня!\n\nНажмите на кнопку ниже, чтобы перейти в группу.",
+    telegramLabel: "Открыть Telegram",
+    telegramUrl: "https://t.me/+-uRUIlVz1BszNDYy",
   },
 
   venues: {
     ceremony: {
-      name: "Our Lady of Lourdes Parish",
-      address: "Carpenter Hill, Marbel, South Cotabato",
-      time: "2:00 PM",
+      name: "Приход Богоматери Лурдской",
+      address: "Карпентер Хилл, Марбель, Южный Котабато",
+      time: "14:00",
       image: "/images/ceremony.jpg",
       mapsUrl: "https://maps.google.com/?q=Our+Lady+of+Lourdes+Parish+Marbel",
       embedUrl:
         "https://www.google.com/maps?q=Our+Lady+of+Lourdes+Parish+Marbel&output=embed",
     },
     reception: {
-      name: "The Farm @ Carpenter Hill",
-      address: "Carpenter Hill, Marbel, South Cotabato",
-      time: "4:00 PM",
+      name: "Ферма на Карпентер Хилл",
+      address: "Карпентер Хилл, Марбель, Южный Котабато",
+      time: "16:00",
       image: "/images/reception.jpg",
       mapsUrl: "https://maps.google.com/?q=The+Farm+Carpenter+Hill+Marbel",
       embedUrl:
@@ -122,14 +122,54 @@ export const weddingConfig = {
     },
   },
 
-  rsvp: {
-    deadline: "May 1, 2025",
-    maxGuests: 6,
-  },
-
   contact: {
     phone: "+7 700 000 00 00",
     email: "hello@oliviaandralph.com",
+  },
+
+  /** Все подписи интерфейса — меняйте свободно */
+  ui: {
+    openScreen: {
+      overline: "Свадьба",
+      hint: "Нажмите на монограмму, чтобы открыть приглашение",
+    },
+    hero: { overline: "Свадьба" },
+    story: { overline: "Как всё начиналось" },
+    countdown: {
+      overline: "Считаем дни",
+      title: "До нашей свадьбы",
+      today: "Сегодня наша свадьба ❤️",
+      days: "Дней",
+      hours: "Часов",
+      minutes: "Минут",
+      seconds: "Секунд",
+    },
+    timeline: {
+      overline: "Порядок дня",
+      title: "Программа дня",
+      subtitle: "От клятв до последнего танца.",
+    },
+    gallery: { overline: "Моменты", title: "Галерея", close: "Закрыть", prev: "Предыдущее фото", next: "Следующее фото", viewer: "Просмотр фотографий" },
+    dressCode: {
+      overline: "Дресс-код",
+      ladies: "Дамы",
+      gentlemen: "Господа",
+      colours: "Палитра",
+      avoid: "Просим избегать",
+    },
+    gifts: { overline: "Подарки", title: "Подарки" },
+    venue: {
+      overline: "Где нас найти",
+      title: "Локации",
+      subtitle: "Приезжайте разделить с нами этот день — мы очень ждём вас.",
+      ceremony: "Церемония",
+      reception: "Банкет",
+      navigate: "Маршрут",
+      openMaps: "Открыть карту",
+      mapTitle: "Карта локации",
+    },
+    music: { on: "Музыка Вкл", off: "Музыка Выкл" },
+    footer: { note: "Надеемся, что вы сможете приехать. Благослови вас Бог." },
   },
 } as const;
 

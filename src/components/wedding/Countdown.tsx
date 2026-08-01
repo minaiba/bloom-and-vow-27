@@ -28,18 +28,19 @@ export function Countdown() {
     return () => window.clearInterval(id);
   }, [target]);
 
+  const t = weddingConfig.ui.countdown;
   const units: Array<[string, number]> = remaining
     ? [
-        ["Days", remaining.days],
-        ["Hours", remaining.hours],
-        ["Minutes", remaining.minutes],
-        ["Seconds", remaining.seconds],
+        [t.days, remaining.days],
+        [t.hours, remaining.hours],
+        [t.minutes, remaining.minutes],
+        [t.seconds, remaining.seconds],
       ]
     : [];
 
   return (
     <section className="relative px-6 py-24 sm:py-32">
-      <SectionTitle overline="Counting the days" title="Until We Say I Do" />
+      <SectionTitle overline={t.overline} title={t.title} />
 
       <div className="mx-auto mt-14 max-w-3xl">
         {!ready ? (
@@ -62,7 +63,7 @@ export function Countdown() {
         ) : (
           <Reveal>
             <p className="script text-center text-4xl text-primary sm:text-5xl">
-              Today is our Wedding ❤️
+              {t.today}
             </p>
           </Reveal>
         )}

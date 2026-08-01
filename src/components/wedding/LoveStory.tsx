@@ -2,19 +2,19 @@ import { weddingConfig } from "@/config/wedding";
 import { Divider, Reveal, ScaleIn, SectionTitle } from "./primitives";
 
 export function LoveStory() {
-  const { story, images, couple } = weddingConfig;
+  const { story, images, couple, ui } = weddingConfig;
 
   return (
     <section id="story" className="relative overflow-hidden px-6 py-24 sm:py-32">
       <div className="watercolor torn-top torn-bottom absolute inset-x-0 top-0 -z-10 h-full opacity-60" />
 
-      <SectionTitle overline="How it began" title={story.title} />
+      <SectionTitle overline={ui.story.overline} title={story.title} />
 
       <div className="mx-auto mt-16 grid max-w-5xl items-center gap-12 md:grid-cols-2">
         <ScaleIn className="overflow-hidden rounded-[2rem] shadow-[var(--shadow-lift)]">
           <img
             src={images.story}
-            alt={`${couple.bride} and ${couple.groom} holding hands`}
+            alt={`${couple.bride} и ${couple.groom} держатся за руки`}
             width={1280}
             height={900}
             loading="lazy"

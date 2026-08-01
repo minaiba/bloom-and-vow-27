@@ -7,6 +7,7 @@ import { Reveal, SectionTitle } from "./primitives";
 
 export function Gallery() {
   const photos = weddingConfig.gallery;
+  const t = weddingConfig.ui.gallery;
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const touchStart = useRef<number | null>(null);
 
@@ -36,7 +37,7 @@ export function Gallery() {
 
   return (
     <section id="gallery" className="relative px-6 py-24 sm:py-32">
-      <SectionTitle overline="Moments" title="The Gallery" />
+      <SectionTitle overline={t.overline} title={t.title} />
 
       <div className="mx-auto mt-16 max-w-5xl columns-2 gap-4 [column-fill:_balance] md:columns-3">
         {photos.map((photo, i) => (
@@ -74,12 +75,12 @@ export function Gallery() {
             }}
             role="dialog"
             aria-modal="true"
-            aria-label="Photo viewer"
+            aria-label={t.viewer}
           >
             <button
               type="button"
               onClick={close}
-              aria-label="Close"
+              aria-label={t.close}
               className="absolute right-5 top-5 rounded-full bg-background/90 p-3 text-primary"
             >
               <X className="h-5 w-5" />
@@ -90,7 +91,7 @@ export function Gallery() {
                 e.stopPropagation();
                 step(-1);
               }}
-              aria-label="Previous photo"
+              aria-label={t.prev}
               className="absolute left-3 rounded-full bg-background/90 p-3 text-primary sm:left-8"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -111,7 +112,7 @@ export function Gallery() {
                 e.stopPropagation();
                 step(1);
               }}
-              aria-label="Next photo"
+              aria-label={t.next}
               className="absolute right-3 rounded-full bg-background/90 p-3 text-primary sm:right-8"
             >
               <ChevronRight className="h-5 w-5" />
