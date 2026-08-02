@@ -131,7 +131,7 @@ export const weddingConfig = {
   ui: {
     openScreen: {
       overline: "Свадьба",
-      hint: "Нажмите на монограмму, чтобы открыть приглашение",
+      hint: "Нажмите на медальон, чтобы открыть приглашение",
     },
     hero: { overline: "Свадьба" },
     story: { overline: "Как всё начиналось" },
