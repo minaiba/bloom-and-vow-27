@@ -155,7 +155,8 @@ export function Locket({
                   background:
                     "conic-gradient(from 210deg, hsl(48 92% 88%), hsl(42 72% 58%) 20%, hsl(36 52% 36%) 40%, hsl(46 88% 80%) 58%, hsl(38 60% 44%) 78%, hsl(48 92% 88%))",
                   boxShadow:
-                    "0 18px 40px hsl(30 45% 18% / 0.45), inset 0 2px 6px hsl(48 95% 92% / 0.7), inset 0 -6px 14px hsl(30 45% 20% / 0.5)",
+                    "inset 0 2px 6px hsl(48 95% 92% / 0.7), inset 0 -6px 14px hsl(30 45% 20% / 0.5)",
+
                 }}
               >
                 <div
