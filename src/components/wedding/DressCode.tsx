@@ -1,5 +1,22 @@
-import { weddingConfig } from "@/config/wedding";
 import { Reveal, SectionTitle } from "./primitives";
+
+/* ——— ТЕКСТЫ (меняйте прямо здесь) ——— */
+const OVERLINE = "Дресс-код";
+const TITLE = "Торжественный стиль";
+const NOTE = "Будем рады видеть вас в оттенках нашей палитры.";
+const LADIES = "Дамы";
+const GENTLEMEN = "Господа";
+const COLOURS_LABEL = "Палитра";
+const AVOID_LABEL = "Просим избегать";
+const PALETTE = [
+  { name: "Тёмно-синий", hex: "#1B3A73" },
+  { name: "Василёк", hex: "#4C7BD9" },
+  { name: "Небесный", hex: "#A9C6EE" },
+  { name: "Бежевый", hex: "#E8DFCF" },
+  { name: "Светло-серый", hex: "#DCDEE2" },
+  { name: "Белый", hex: "#FFFFFF" },
+];
+const AVOID = ["Красный", "Неон", "Чёрный"];
 
 function DressIcon({ variant }: { variant: "gown" | "suit" }) {
   return (
@@ -30,24 +47,18 @@ function DressIcon({ variant }: { variant: "gown" | "suit" }) {
 }
 
 export function DressCode() {
-  const { dressCode, ui } = weddingConfig;
-
   return (
-    <section className="relative overflow-hidden px-6 py-24 sm:py-32">
+    <section id="dresscode" className="relative overflow-hidden px-6 py-24 sm:py-32">
       <div className="watercolor torn-top torn-bottom absolute inset-0 -z-10 opacity-70" />
 
-      <SectionTitle
-        overline={ui.dressCode.overline}
-        title={dressCode.title}
-        subtitle={dressCode.note}
-      />
+      <SectionTitle overline={OVERLINE} title={TITLE} subtitle={NOTE} />
 
       <div className="mx-auto mt-16 flex max-w-2xl items-end justify-center gap-16">
         <Reveal>
           <div className="flex flex-col items-center gap-3">
             <DressIcon variant="gown" />
             <span className="text-[0.6rem] uppercase tracking-[0.35em] text-muted-foreground">
-              {ui.dressCode.ladies}
+              {LADIES}
             </span>
           </div>
         </Reveal>
@@ -55,7 +66,7 @@ export function DressCode() {
           <div className="flex flex-col items-center gap-3">
             <DressIcon variant="suit" />
             <span className="text-[0.6rem] uppercase tracking-[0.35em] text-muted-foreground">
-              {ui.dressCode.gentlemen}
+              {GENTLEMEN}
             </span>
           </div>
         </Reveal>
@@ -63,10 +74,10 @@ export function DressCode() {
 
       <Reveal delay={0.2} className="mx-auto mt-16 max-w-xl text-center">
         <p className="text-[0.65rem] uppercase tracking-[0.4em] text-muted-foreground">
-          {ui.dressCode.colours}
+          {COLOURS_LABEL}
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
-          {dressCode.palette.map((c) => (
+          {PALETTE.map((c) => (
             <div key={c.name} className="flex flex-col items-center gap-2">
               <span
                 className="h-12 w-12 rounded-full ring-1 ring-border"
@@ -83,10 +94,10 @@ export function DressCode() {
 
       <Reveal delay={0.3} className="mx-auto mt-14 max-w-xl text-center">
         <p className="text-[0.65rem] uppercase tracking-[0.4em] text-muted-foreground">
-          {ui.dressCode.avoid}
+          {AVOID_LABEL}
         </p>
         <div className="mt-4 flex flex-wrap justify-center gap-3">
-          {dressCode.avoid.map((item) => (
+          {AVOID.map((item) => (
             <span
               key={item}
               className="rounded-full border border-border bg-card/70 px-5 py-2 text-xs uppercase tracking-[0.2em] text-foreground/70 line-through"

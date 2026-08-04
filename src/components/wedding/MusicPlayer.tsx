@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
-import { weddingConfig } from "@/config/wedding";
+/* ——— НАСТРОЙКИ (меняйте прямо здесь) ——— */
+/** Положите свой файл в /public/music/theme.mp3 */
+const MUSIC_SRC = "/music/theme.mp3";
+const LABEL_ON = "Музыка Вкл";
+const LABEL_OFF = "Музыка Выкл";
 
-/** Простой HTML Audio: маленькая круглая кнопка 🎵, loop, играет постоянно. */
+/** Простой HTML Audio: маленькая круглая кнопка 🎵, loop. */
 export function MusicPlayer({ active }: { active: boolean }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
@@ -46,11 +50,11 @@ export function MusicPlayer({ active }: { active: boolean }) {
 
   if (!active) return null;
 
-  const label = playing ? weddingConfig.ui.music.on : weddingConfig.ui.music.off;
+  const label = playing ? LABEL_ON : LABEL_OFF;
 
   return (
     <>
-      <audio ref={audioRef} src={weddingConfig.music.src} loop preload="auto" />
+      <audio ref={audioRef} src={MUSIC_SRC} loop preload="auto" />
       <button
         type="button"
         onClick={toggle}
