@@ -1,8 +1,12 @@
 import { Camera, GlassWater, Heart, Music, UtensilsCrossed } from "lucide-react";
 import { motion } from "motion/react";
 
-import { weddingConfig, type TimelineItem } from "@/config/wedding";
 import { Reveal, SectionTitle } from "./primitives";
+
+/* ——— ТЕКСТЫ (меняйте прямо здесь) ——— */
+const OVERLINE = "Порядок дня";
+const TITLE = "Программа дня";
+const SUBTITLE = "От клятв до последнего танца.";
 
 const icons = {
   rings: Heart,
@@ -12,7 +16,22 @@ const icons = {
   music: Music,
 } as const;
 
-function Row({ item, index }: { item: TimelineItem; index: number }) {
+type Item = {
+  time: string;
+  title: string;
+  description: string;
+  icon: keyof typeof icons;
+};
+
+const ITEMS: Item[] = [
+  { time: "14:00", title: "Церемония", description: "Приход Богоматери Лурдской", icon: "rings" },
+  { time: "16:00", title: "Банкет", description: "Welcome-коктейль на «Ферме»", icon: "glass" },
+  { time: "17:00", title: "Ужин", description: "Ужин и тёплые тосты", icon: "dinner" },
+  { time: "18:00", title: "Фотосессия", description: "Портреты в золотой час", icon: "camera" },
+  { time: "19:00", title: "Танцы", description: "Первый танец и вечеринка", icon: "music" },
+];
+
+function Row({ item, index }: { item: Item; index: number }) {
   const Icon = icons[item.icon];
   return (
     <Reveal delay={index * 0.1}>
@@ -37,11 +56,7 @@ function Row({ item, index }: { item: TimelineItem; index: number }) {
 export function Timeline() {
   return (
     <section id="timeline" className="relative px-6 py-24 sm:py-32">
-      <SectionTitle
-        overline={weddingConfig.ui.timeline.overline}
-        title={weddingConfig.ui.timeline.title}
-        subtitle={weddingConfig.ui.timeline.subtitle}
-      />
+      <SectionTitle overline={OVERLINE} title={TITLE} subtitle={SUBTITLE} />
 
       <div className="relative mx-auto mt-16 max-w-xl">
         <motion.span
@@ -53,7 +68,7 @@ export function Timeline() {
           style={{ height: "100%" }}
           aria-hidden="true"
         />
-        {weddingConfig.timeline.map((item, i) => (
+        {ITEMS.map((item, i) => (
           <Row key={item.title} item={item} index={i} />
         ))}
       </div>
