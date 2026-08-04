@@ -1,15 +1,20 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
-import { weddingConfig } from "@/config/wedding";
 import { Monogram } from "./primitives";
 
 const easeSilk = [0.22, 1, 0.36, 1] as const;
 
+/* ——— ТЕКСТЫ И ФОТО (меняйте прямо здесь) ——— */
+const HINT = "Нажмите на медальон, чтобы открыть приглашение";
+const PHOTO_LEFT = { src: "/images/hero.jpg", alt: "Оливия" };
+const PHOTO_RIGHT = { src: "/images/story.jpg", alt: "Ральф" };
+const MONOGRAM = { left: "О", right: "Р" };
+
 /**
  * Реалистичный золотой медальон (locket).
  * Закрыт — покачивается; при клике створки раскрываются как настоящий шарнир,
- * внутри — две фотографии пары. Через 5 секунд вызывается onOpen().
+ * внутри — две фотографии пары. Через 3 секунды вызывается onOpen().
  */
 export function Locket({
   onOpen,
@@ -18,12 +23,11 @@ export function Locket({
   onOpen: () => void;
   leaving: boolean;
 }) {
-  const { couple, images, ui } = weddingConfig;
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (!open) return;
-    const id = window.setTimeout(onOpen, 5000);
+    const id = window.setTimeout(onOpen, 3000);
     return () => window.clearTimeout(id);
   }, [open, onOpen]);
 
@@ -77,7 +81,7 @@ export function Locket({
       <motion.button
         type="button"
         onClick={() => !open && setOpen(true)}
-        aria-label={ui.openScreen.hint}
+        aria-label={HINT}
         className="relative"
         style={{ perspective: 1200, transformStyle: "preserve-3d" }}
         animate={
@@ -113,16 +117,16 @@ export function Locket({
           >
             <div className="flex h-full w-full overflow-hidden rounded-full">
               <motion.img
-                src={images.hero}
-                alt={couple.bride}
+                src={PHOTO_LEFT.src}
+                alt={PHOTO_LEFT.alt}
                 className="h-full w-1/2 object-cover"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: open ? 1 : 0 }}
                 transition={{ delay: open ? 0.6 : 0, duration: 0.8 }}
               />
               <motion.img
-                src={images.story}
-                alt={couple.groom}
+                src={PHOTO_RIGHT.src}
+                alt={PHOTO_RIGHT.alt}
                 className="h-full w-1/2 object-cover"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: open ? 1 : 0 }}
@@ -140,10 +144,7 @@ export function Locket({
               style={{
                 transformStyle: "preserve-3d",
                 transformOrigin: side === "left" ? "left center" : "right center",
-                clipPath:
-                  side === "left"
-                    ? "inset(0 50% 0 0)"
-                    : "inset(0 0 0 50%)",
+                clipPath: side === "left" ? "inset(0 50% 0 0)" : "inset(0 0 0 50%)",
                 backfaceVisibility: "hidden",
               }}
               animate={{ rotateY: open ? (side === "left" ? -155 : 155) : 0 }}
@@ -156,7 +157,6 @@ export function Locket({
                     "conic-gradient(from 210deg, hsl(48 92% 88%), hsl(42 72% 58%) 20%, hsl(36 52% 36%) 40%, hsl(46 88% 80%) 58%, hsl(38 60% 44%) 78%, hsl(48 92% 88%))",
                   boxShadow:
                     "inset 0 2px 6px hsl(48 95% 92% / 0.7), inset 0 -6px 14px hsl(30 45% 20% / 0.5)",
-
                 }}
               >
                 <div
@@ -168,8 +168,8 @@ export function Locket({
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Monogram
-                    left={couple.monogram.left}
-                    right={couple.monogram.right}
+                    left={MONOGRAM.left}
+                    right={MONOGRAM.right}
                     className="text-7xl text-[hsl(34_45%_26%)] drop-shadow-[0_1px_0_hsl(48_92%_88%)] sm:text-8xl"
                   />
                 </div>
