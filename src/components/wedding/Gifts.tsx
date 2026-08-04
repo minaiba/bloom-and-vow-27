@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 
-import { Reveal, SectionTitle } from "./primitives";
+import { SectionTitle } from "./primitives";
 
 const easeSilk = [0.22, 1, 0.36, 1] as const;
 
@@ -101,10 +101,6 @@ export function Gifts() {
           )}
         </AnimatePresence>
       </div>
-
-      <Reveal className="sr-only">
-        <span>{ENVELOPE_HINT}</span>
-      </Reveal>
     </section>
   );
 }
