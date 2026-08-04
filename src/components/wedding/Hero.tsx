@@ -1,13 +1,20 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
-import { weddingConfig } from "@/config/wedding";
 import { Monogram } from "./primitives";
 
 const easeSilk = [0.22, 1, 0.36, 1] as const;
 
+/* ——— ТЕКСТЫ И ФОТО (меняйте прямо здесь) ——— */
+const OVERLINE = "Свадьба";
+const BRIDE = "Оливия";
+const GROOM = "Ральф";
+const MONOGRAM = { left: "О", right: "Р" };
+const DATE_LINE = "18 МАЯ · 2025";
+const VERSE = "«Исаия 60:22 — Когда придёт время, Я, Господь, сделаю это».";
+const HERO_IMAGE = "/images/hero.jpg";
+
 export function Hero() {
-  const { couple, date, images, ui } = weddingConfig;
   const [scrolled, setScrolled] = useState(0);
 
   useEffect(() => {
@@ -29,8 +36,8 @@ export function Hero() {
         transition={{ duration: 1.6, ease: easeSilk }}
       >
         <img
-          src={images.hero}
-          alt={`${couple.bride} и ${couple.groom}`}
+          src={HERO_IMAGE}
+          alt={`${BRIDE} и ${GROOM}`}
           width={1280}
           height={1600}
           className="h-full w-full object-cover object-top"
@@ -47,7 +54,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.9, ease: easeSilk }}
         >
-          {ui.hero.overline}
+          {OVERLINE}
         </motion.p>
 
         <motion.h1
@@ -56,11 +63,11 @@ export function Hero() {
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ delay: 0.5, duration: 1.1, ease: easeSilk }}
         >
-          {couple.bride}
+          {BRIDE}
           <span className="mx-3 block text-2xl italic opacity-70 sm:inline sm:text-3xl">
             и
           </span>
-          {couple.groom}
+          {GROOM}
         </motion.h1>
 
         <motion.div
@@ -71,8 +78,8 @@ export function Hero() {
         >
           <div className="glass flex h-32 w-32 items-center justify-center rounded-full sm:h-40 sm:w-40">
             <Monogram
-              left={couple.monogram.left}
-              right={couple.monogram.right}
+              left={MONOGRAM.left}
+              right={MONOGRAM.right}
               className="text-6xl sm:text-7xl"
             />
           </div>
@@ -85,9 +92,7 @@ export function Hero() {
           transition={{ delay: 1, duration: 0.9, ease: easeSilk }}
         >
           <span className="hairline w-12" />
-          <p className="text-sm uppercase tracking-[0.35em] sm:text-base">
-            {date.day} {date.month} · {date.year}
-          </p>
+          <p className="text-sm uppercase tracking-[0.35em] sm:text-base">{DATE_LINE}</p>
           <span className="hairline w-12" />
         </motion.div>
 
@@ -97,7 +102,7 @@ export function Hero() {
           transition={{ delay: 1.2, duration: 1 }}
           className="mx-auto mt-12 max-w-md text-xs italic leading-relaxed text-muted-foreground sm:text-sm"
         >
-          {couple.verse}
+          {VERSE}
         </motion.p>
       </div>
     </section>
